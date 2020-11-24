@@ -1,0 +1,21 @@
+# Add 'CI' label to any change to CircleCI config and scripts
+CI:
+  - .circleci/config.yml
+  - ci/*
+  - ci/**/*
+  - .github/*
+  - .github/**/*
+
+# Add 'macros' label to any change to macros
+macros:
+  - macris/*
+  - macris/**/*
+
+# Add 'dbt-core' label to any change to dbt core resources
+integration-test:
+  - integration_test/*
+  - integration_test/**/*
+
+# Add 'documentation' label to any change to documentations
+documentation:
+  - README.md

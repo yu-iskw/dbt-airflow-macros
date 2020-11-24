@@ -1,0 +1,13 @@
+---
+version: 2
+
+macros:
+  - name: ts
+    description: |
+      ## Overview
+      It enables us to get a date and time string which derives from the environment variable `EXECUTION_DATE`.
+      The output should follow `%Y-%m-%dT%H:%M:%S+00:00`.
+      It is inspired by Apache Airflow's `{% raw %}{{ ts }}{% endraw %}`.
+
+      ## Usage
+      {% raw %}`{{ ts() }}`{% endraw %}}
