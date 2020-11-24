@@ -1,5 +1,6 @@
 # dbt-airflow-macros
-[![Build Status](https://img.shields.io/circleci/project/https://github.com/yu-iskw/dbt-airflow-macros/master.svg)](https://circleci.com/gh/https://github.com/yu-iskw/dbt-airflow-macros)
+[![Build Status](https://circleci.com/gh/yu-iskw/dbt-airflow-macros.svg?style=svg)](https://github.com/yu-iskw/dbt-airflow-macros)
+
 
 This is a dbt package to use macros inspired by Apache Airflow.
 
