@@ -23,8 +23,8 @@ commands:
             apt-get update -y \
                 && apt-get install -y build-essential yamllint shellcheck jq
       - run:
-          name: Set up the project.
-          command: make setup
+          name: Set up the environment
+          command: bash ./ci/setup.sh
 
 #
 # jobs
@@ -34,9 +34,7 @@ jobs:
     executor: python-image
     steps:
       - checkout
-      - check-diff-files-to-halt-command:
-          pattern: "\\.sh$"
-      - setup-google-cloud-sdk-image-command
+      - setup-python-image-command
       - run:
           name: Validate bash scripts
           command: |
