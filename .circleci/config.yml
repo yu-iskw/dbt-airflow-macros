@@ -49,6 +49,7 @@ commands:
             git clone https://github.com/pyenv/pyenv.git ~/.pyenv
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
+            echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
 
 #
 # jobs
@@ -79,6 +80,7 @@ jobs:
             # Set up the python environment
             pyenv install 3.7.9
             pyenv global 3.7.9
+            pyenv rehash
             bash ./ci/install_python_modules.sh
             # Run tests
             cd integration_tests/postgres
