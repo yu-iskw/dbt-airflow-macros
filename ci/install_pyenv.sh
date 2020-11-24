@@ -12,6 +12,3 @@ git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 # shellcheck disable=SC2016
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-
-# Update pyenv database
-"${PYENV_ROOT}"/bin/pyenv update
