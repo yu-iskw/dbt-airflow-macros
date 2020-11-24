@@ -8,7 +8,7 @@ PYENV_ROOT="${HOME}/.pyenv"
 git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
 
 # Install python-build
-bash "${PYENV_ROOT}/plugins/python-build/install.sh"
+#bash "${PYENV_ROOT}/plugins/python-build/install.sh"
 
 # Install python 3.8 as default
 "${PYENV_ROOT}"/bin/pyenv install 3.8.6
