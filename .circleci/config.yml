@@ -35,6 +35,13 @@ commands:
           command: |
             pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
   setup-postgres-image-command:
+    parameters:
+      pyenv_version:
+        type: string
+        default: "v1.2.21"
+      python_version:
+        type: string
+        default: "3.7.9"
     description: "steps to set up postgres-image executor"
     steps:
       - run:
@@ -48,15 +55,16 @@ commands:
       - run:
           name: Install pyenv
           command: |
-            git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+            git clone https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
+            git checkout << parameters.pyenv_version >>
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
       - run:
           name: Install python
           command: |
-            pyenv install 3.7.9
-            pyenv global 3.7.9
+            pyenv install << parameters.python_version >>
+            pyenv global << parameters.python_versionn >>
             pyenv rehash
       - run:
           name: Set up the environment
