@@ -76,14 +76,9 @@ jobs:
       - run:
           name: test on python 3.7
           command: |
-            whoami
-            echo $BASH_ENV
-            cat $BASH_ENV
-            echo "$PATH"
-
             # Set up the python environment
-            pyenv install 3.7
-            pyenv global 3.7
+            pyenv install 3.7.9
+            pyenv global 3.7.9
             bash ./ci/install_python_modules.sh
             # Run tests
             cd integration_tests/postgres
