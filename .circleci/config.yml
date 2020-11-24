@@ -12,6 +12,7 @@ executors:
     docker:
       - image: postgres:9.6
         environment:
+          BASH_ENV: ~/.bashrc
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
