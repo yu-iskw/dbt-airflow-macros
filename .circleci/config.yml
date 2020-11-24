@@ -34,8 +34,6 @@ jobs:
     executor: python-image
     steps:
       - checkout
-      - check-diff-files-to-halt-command:
-          pattern: "\\.sh$"
       - setup-google-cloud-sdk-image-command
       - run:
           name: Validate bash scripts
