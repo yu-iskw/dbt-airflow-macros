@@ -1,3 +1,2 @@
--e requirements-dev.txt
-
 dbt-core==0.18.1
+dbt-postgres==0.18.1

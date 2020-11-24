@@ -31,7 +31,7 @@ commands:
                 && apt-get install -y build-essential yamllint shellcheck jq
       - run:
           name: Set up the environment
-          command: bash ./ci/setup.sh
+          command: bash ./ci/install_python_modules.sh
   setup-postgres-image-command:
     description: "steps to set up postgres-image executor"
     steps:
@@ -68,8 +68,10 @@ jobs:
       - checkout
       - setup-postgres-image-command
       - run:
-          name: test
+          name: test on python 3.7
           command: |
+            pyenv install 3.7
+            pyenv global 3.7
             cd integration_tests/postgres
             bash run_tests.sh
 
