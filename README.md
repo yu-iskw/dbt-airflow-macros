@@ -1,5 +1,5 @@
 # dbt-airflow-macros
-[![Build Status](https://circleci.com/gh/yu-iskw/dbt-airflow-macros.svg?style=svg)](https://github.com/yu-iskw/dbt-airflow-macros)
+[![Build Status](https://circleci.com/gh/yu-iskw/dbt-airflow-macros.svg?style=svg)](https://app.circleci.com/pipelines/github/yu-iskw/dbt-airflow-macros)
 
 
 This is a dbt package to use macros inspired by Apache Airflow.
@@ -24,12 +24,14 @@ packages:
 ## Usage
 The shell environment variable `EXECUTION_DATE` enables us to pass the date and time for the dbt macros.
 The ISO 8601 format is available, because the package uses `datetime.datetime.fromisoformat` internally.
+If we don't set `EXECUTION_DATE`, then it is set to the system local time no matter what time zone it uses.
 
 ```bash
 EXECUTION_DATE="2020-01-01T01:23:45" dbt run
 
 EXECUTION_DATE="2020-01-01" dbt run
 ```
+
 
 ## Macros
 
