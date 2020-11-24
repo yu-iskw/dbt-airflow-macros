@@ -34,7 +34,7 @@ jobs:
     executor: python-image
     steps:
       - checkout
-      - setup-google-cloud-sdk-image-command
+      - setup-python-image-command
       - run:
           name: Validate bash scripts
           command: |
