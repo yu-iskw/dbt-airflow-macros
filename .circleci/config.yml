@@ -87,7 +87,7 @@ workflows:
               only: /.*/
             tags:
               only: /.*/
-      - integration-tests:
+      - integration-tests-postgres:
           filters:
             branches:
               only: /.*/
