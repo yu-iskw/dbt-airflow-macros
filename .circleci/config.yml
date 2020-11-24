@@ -45,7 +45,9 @@ commands:
                        zlib1g-dev uuid-dev tk-dev curl wget
       - run:
           name: Install pyenv
-          command: bash ./ci/install_pyenv.sh
+          command: |
+            bash ./ci/install_pyenv.sh
+            whoami
 
 
 #
@@ -74,6 +76,10 @@ jobs:
       - run:
           name: test on python 3.7
           command: |
+            whoami
+            cat ~/.bash_profile
+            echo "$PATH"
+
             # Set up the python environment
             pyenv install 3.7
             pyenv global 3.7
