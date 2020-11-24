@@ -23,8 +23,8 @@ commands:
             apt-get update -y \
                 && apt-get install -y build-essential yamllint shellcheck jq
       - run:
-          name: Set up the project.
-          command: make setup
+          name: Set up the environment
+          command: bash ./ci/setup.sh
 
 #
 # jobs
