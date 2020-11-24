@@ -14,4 +14,4 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 
 # Update pyenv database
-"${PYENV_ROOT}"/pyenv update
+"${PYENV_ROOT}"/bin/pyenv update
