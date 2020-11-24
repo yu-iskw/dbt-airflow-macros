@@ -80,7 +80,7 @@ jobs:
           name: test on python 3.7
           command: |
             whoami
-            cat ~/.bash_profile
+            cat ~/.bashrc
             echo "$PATH"
 
             # Set up the python environment
