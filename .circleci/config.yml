@@ -39,9 +39,8 @@ commands:
           name: Install libraries
           command: |
             apt-get update -y \
-                && apt-get install -y git build-essential libssl-dev zlib1g-dev libbz2-dev \
-                   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-                   xz-utils tk-dev libffi-dev liblzma-dev
+                && apt-get install -y git build-essential libffi-dev libssl-dev \
+                       zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
       - run:
           name: Install pyenv
           command: bash ./ci/install_pyenv.sh
