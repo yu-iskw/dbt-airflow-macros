@@ -66,6 +66,7 @@ commands:
       - run:
           name: Install python
           command: |
+            pyenv update
             pyenv install << parameters.python_version >>
             pyenv global << parameters.python_version >>
             pyenv rehash
