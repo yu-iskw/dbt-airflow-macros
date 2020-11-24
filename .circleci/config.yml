@@ -8,12 +8,8 @@ executors:
   python-image:
     docker:
       - image: python:3.7
-  postgres-image:
-    docker:
       - image: postgres:12.5
         environment:
-          SHLVL: 1
-          PYENV_DEBUG: 1
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
@@ -36,27 +32,6 @@ commands:
           command: |
             pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
 
-  setup-postgres-image-command:
-    description: "steps to set up postgres-image executor"
-    steps:
-      - run:
-          name: Install libraries
-          command: |
-            apt-get update -y \
-                && apt-get install -y git gcc build-essential libbz2-dev libdb-dev \
-                       libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
-                       libncursesw5-dev libsqlite3-dev libssl-dev \
-                       zlib1g-dev uuid-dev tk-dev curl wget
-      - run:
-          name: Install pyenv
-          command: |
-            # Download pyenv
-            git clone https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
-            # Register environment variables
-            echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
-            echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
-            echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
-
 #
 # jobs
 #
@@ -74,22 +49,6 @@ jobs:
           name: Validate YAML files
           command: |
             bash ./ci/lint_yaml.sh
-
-  integration-tests-postgres:
-    executor: postgres-image
-    steps:
-      - checkout
-      - setup-postgres-image-command
-      - run:
-          name: Install python
-          command: |
-            pyenv install 3.7.9
-            pyenv global 3.7.9
-            pyenv rehash
-      - run:
-          name: Set up the environment
-          command: |
-            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
       - run:
           name: Run tox
           command: |

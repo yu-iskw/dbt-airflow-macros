@@ -7,10 +7,10 @@ integration_tests:
   outputs:
     postgres:
       type: postgres
-      host: "{{ env_var('POSTGRES_TEST_HOST', 'localhost') }}"
-      user: "{{ env_var('POSTGRES_TEST_USER', 'postgres') }}"
-      pass: "{{ env_var('POSTGRES_TEST_PASS', 'postgres') }}"
-      port: "{{ env_var('POSTGRES_TEST_PORT', '5439') | as_number }}"
-      dbname: "{{ env_var('POSTGRES_TEST_DBNAME', 'testdb') }}"
+      host: "{{ env_var('POSTGRES_HOST', 'localhost') }}"
+      user: "{{ env_var('POSTGRES_USER', 'postgres') }}"
+      pass: "{{ env_var('POSTGRES_PASSWORD', 'postgres') }}"
+      port: "{{ env_var('POSTGRES_PORT', '5439') | as_number }}"
+      dbname: "{{ env_var('POSTGRES_DBE', 'testdb') }}"
       schema: dbt_airflow_macros_integration_tests_postgres
       threads: 1
