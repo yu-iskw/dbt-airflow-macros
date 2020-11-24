@@ -6,5 +6,5 @@ set -e
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-yamllint -c "${PROJECT_DIR}/.yamllintrc.yml" "${PROJECT_DIR}"/*.yml
-yamllint -c "${PROJECT_DIR}/.yamllintrc.yml" "${PROJECT_DIR}"/macros/*.yml
+yamllint "${PROJECT_DIR}"/*.yml
+yamllint "${PROJECT_DIR}"/macros/*.yml
