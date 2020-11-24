@@ -50,7 +50,7 @@ jobs:
           command: |
             bash ./ci/lint_yaml.sh
       - run:
-          name: Run tox
+          name: Run the intagration tests on postgres
           command: |
             tox
 
@@ -61,12 +61,6 @@ workflows:
   test:
     jobs:
       - unit-tests:
-          filters:
-            branches:
-              only: /.*/
-            tags:
-              only: /.*/
-      - integration-tests-postgres:
           filters:
             branches:
               only: /.*/
