@@ -29,3 +29,13 @@ EXECUTION_DATE="2020-01-01T01:23:45" dbt run
 
 EXECUTION_DATE="2020-01-01" dbt run
 ```
+
+## Macros
+
+|Macro           |Description                                  |
+|----------------|---------------------------------------------|
+|`execution_date`|`datetime.datetime` object                   |
+|`ds`            |`"%Y-%m-%d"` of execution time               |
+|`ds_nodash`     |`"%Y%m%d"` of execution time                 |
+|`ts`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
+|`ts_nodash`     |`"%Y%m%dT%H%M%S"`of execution_time           |
