@@ -71,9 +71,7 @@ jobs:
           name: test
           command: |
             cd integration_tests/postgres
-            dbt deps
-            dbt run
-            dbt test
+            bash run_tests.sh
 
 #
 # Workflows
