@@ -36,7 +36,7 @@ commands:
             pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
   setup-postgres-image-command:
     parameters:
-      pyenv_version:
+      pyenv_git_tag:
         type: string
         default: "v1.2.21"
       python_version:
@@ -56,7 +56,7 @@ commands:
           name: Install pyenv
           command: |
             git clone https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
-            git checkout origin/<< parameters.pyenv_version >>
+            git checkout refs/tags/<< parameters.pyenv_git_tag >>
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
@@ -88,7 +88,7 @@ jobs:
           name: Validate YAML files
           command: |
             bash ./ci/lint_yaml.sh
-      # TODO execute the integration test
+
   integration-tests-postgres:
     executor: postgres-image
     steps:
