@@ -8,10 +8,15 @@ executors:
   python-image:
     docker:
       - image: python:3.7
-      - image: postgres:12.5
+        environment:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_DBE: testdb
+      - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: testdb
 
 
@@ -36,7 +41,7 @@ commands:
 # jobs
 #
 jobs:
-  unit-tests:
+  tests:
     executor: python-image
     steps:
       - checkout
@@ -60,7 +65,7 @@ jobs:
 workflows:
   test:
     jobs:
-      - unit-tests:
+      - tests:
           filters:
             branches:
               only: /.*/
