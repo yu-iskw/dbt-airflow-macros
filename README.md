@@ -14,7 +14,7 @@ This is a dbt package to use macros inspired by Apache Airflow.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
-`packages.yaml`
+Include in `packages.yaml`
 ```yaml
 packages:
   - git: "https://github.com/yu-iskw/dbt-airflow-macros.git"
