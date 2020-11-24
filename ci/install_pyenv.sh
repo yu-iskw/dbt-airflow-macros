@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Constants
-PYENV_ROOT="${HOME}/.pyenv"
-
 # Install pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
