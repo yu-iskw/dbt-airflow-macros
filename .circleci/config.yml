@@ -43,6 +43,10 @@ commands:
       - run:
           name: Install pyenv
           command: bash ./ci/install_pyenv.sh
+      - run:
+          name: Set up the environment
+          command: bash ./ci/install_python_modules.sh
+
 
 #
 # jobs
