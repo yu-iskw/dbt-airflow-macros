@@ -7,11 +7,12 @@ version: 2.1
 executors:
   python-image:
     docker:
-      - image: python:3.8
+      - image: python:3.7
   postgres-image:
     docker:
       - image: postgres:9.6
         environment:
+          SHLVL: 1
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
@@ -51,6 +52,16 @@ commands:
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
+      - run:
+          name: Install python
+          command: |
+            pyenv install 3.7.9
+            pyenv global 3.7.9
+            pyenv rehash
+      - run:
+          name: Set up the environment
+          command: |
+            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
 
 #
 # jobs
@@ -76,14 +87,8 @@ jobs:
       - checkout
       - setup-postgres-image-command
       - run:
-          name: test on python 3.7
+          name: Run tox
           command: |
-            # Set up the python environment
-            pyenv install 3.7.9
-            pyenv global 3.7.9
-            pyenv rehash
-            # Run tox
-            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
             tox
 
 #
