@@ -14,5 +14,5 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 
 # Install python 3.8 as default
-"${PYENV_ROOT}"/bin/pyenv install 3.8
-"${PYENV_ROOT}"/bin/pyenv global 3.8
+"${PYENV_ROOT}"/bin/pyenv install 3.8.6
+"${PYENV_ROOT}"/bin/pyenv global 3.8.6
