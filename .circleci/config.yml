@@ -31,7 +31,8 @@ commands:
                 && apt-get install -y build-essential yamllint shellcheck jq
       - run:
           name: Set up the environment
-          command: bash ./ci/install_python_modules.sh
+          command: |
+            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
   setup-postgres-image-command:
     description: "steps to set up postgres-image executor"
     steps:
@@ -81,10 +82,9 @@ jobs:
             pyenv install 3.7.9
             pyenv global 3.7.9
             pyenv rehash
-            bash ./ci/install_python_modules.sh
-            # Run tests
-            cd integration_tests/postgres
-            bash run_tests.sh
+            # Run tox
+            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
+            tox
 
 #
 # Workflows
