@@ -1,0 +1,13 @@
+---
+version: 2
+
+macros:
+  - name: ds
+    description: |
+      ## Overview
+      It enables us to get a date string which derives from the environment variable `EXECUTION_DATE`.
+      The output should follow `%Y-%m-%d`.
+      It is inspired by Apache Airflow's `{% raw %}{{ ds }}{% endraw %}`.
+
+      ## Usage
+      {% raw %}`{{ ds() }}`{% endraw %}}

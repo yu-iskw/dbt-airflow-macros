@@ -1,0 +1,51 @@
+#
+# The workflow is used for creating a pull request to merge `staging`
+# into `main` as a scheduled job.
+#
+name: Create a pull request to merge staging into main
+on:
+  schedule:
+    # 9am every Tuesday and Thursday in JST
+    - cron: '0 0 * * 2,4'
+jobs:
+  merge-staging-into-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Take in updates from the staging branch
+        run: |
+          git fetch origin staging:staging
+          git reset --hard staging
+      - name: Create a pull request
+        id: create_pr
+        # SEE: https://github.com/peter-evans/create-pull-request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: merge-staging-into-main
+          delete-branch: true
+          draft: true
+          title: Merge staging into main
+          labels: release
+          body: |
+            Merge the `staging` branch into the `main` branch.
+
+            > The pull request was automatically created by GitHub Actions.
+      - name: Send a slack message
+        if: success()
+        # SEE: https://github.com/rtCamp/action-slack-notify
+        uses: rtCamp/action-slack-notify@v2.1.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV }}
+          MSG_MINIMAL: true
+          SLACK_CHANNEL: "tech-dbt"
+          SLACK_ICON: "https://ca.slack-edge.com/T0256J926-WLL2QH491-c96809fecb1c-512"
+          SLACK_USERNAME: "GitHub Actions"
+          SLACK_TITLE: "A pull request to merge staging into main was automatically created by GitHub Actions"
+          # `<!here>` is equivalent to `@here`.
+          SLACK_MESSAGE: |
+            <!here> We will merge `staging` into `main` in a little bit.
+            If you have PRs which you want to urgently merge, please contact dbt admins.
+            URL: ${{ steps.create_pr.outputs.pull-request-url }}
+          SLACK_FOOTER: ""

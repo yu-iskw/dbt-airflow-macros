@@ -1,0 +1,46 @@
+# Add 'CI' label to any change to CircleCI config and scripts
+CI:
+  - .circleci/config.yml
+  - ci/*
+  - ci/**/*
+  - .github/*
+  - .github/**/*
+
+# Add 'dbt' label to any change to dbt resources
+dbt:
+  - analysis/*
+  - analysis/**/*
+  - models/*
+  - models/**/*
+  - test/*
+  - test/**/*
+  - snapshots/*
+  - snapshots/**/*
+
+# Add 'dbt-core' label to any change to dbt core resources
+dbt-core:
+  - dbt_project.yml
+  - packages.yml
+  - selectors.yml
+  - profiles/*
+  - profiles/**/*
+  - bin/*
+  - bin/**/*
+  - macros/*
+  - macros/**/*
+
+# Add 'docker' label to any change to docker files
+docker:
+  - docker/*
+  - docker/**/*
+
+# Add 'dbt-helper' label to any change to dbt-helper
+dbt-helper:
+  - python/dbt-helper/*
+  - python/dbt-helper/**/*
+
+# Add 'documentation' label to any change to documentations
+documentation:
+  - docs/*.md
+  - docs/**/*.md
+  - README.md

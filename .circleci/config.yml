@@ -1,0 +1,62 @@
+---
+version: 2.1
+
+#
+# CircleCI executors
+#
+executors:
+  python-image:
+    docker:
+      - image: python:3.8
+
+
+#
+# CircleCI commands
+#
+commands:
+  setup-python-image-command:
+    description: "steps to set up python-image executor"
+    steps:
+      - run:
+          name: Install libraries
+          command: |
+            apt-get update -y \
+                && apt-get install -y build-essential yamllint shellcheck jq
+      - run:
+          name: Set up the project.
+          command: make setup
+
+#
+# jobs
+#
+jobs:
+  test:
+    executor: python-image
+    steps:
+      - checkout
+      - check-diff-files-to-halt-command:
+          pattern: "\\.sh$"
+      - setup-google-cloud-sdk-image-command
+      - run:
+          name: Validate bash scripts
+          command: |
+            bash ./ci/lint_bash.sh
+      - run:
+          name: Validate YAML files
+          command: |
+            bash ./ci/lint_yaml.sh
+      # TODO execute the integration test
+
+
+#
+# Workflows
+#
+workflows:
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
