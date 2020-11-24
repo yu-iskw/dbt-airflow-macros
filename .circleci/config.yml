@@ -55,7 +55,7 @@ commands:
       - run:
           name: Install pyenv
           command: |
-            git clone https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
+            git clone https://github.com/pyenv/pyenv.git -b << parameters.pyenv_git_tag >> --depth 1 "${HOME}/.pyenv"
             git checkout refs/tags/<< parameters.pyenv_git_tag >>
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
