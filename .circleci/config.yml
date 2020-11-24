@@ -46,9 +46,6 @@ commands:
       - run:
           name: Install pyenv
           command: bash ./ci/install_pyenv.sh
-      - run:
-          name: Set up the environment
-          command: bash ./ci/install_python_modules.sh
 
 
 #
@@ -77,8 +74,11 @@ jobs:
       - run:
           name: test on python 3.7
           command: |
+            # Set up the python environment
             pyenv install 3.7
             pyenv global 3.7
+            bash ./ci/install_python_modules.sh
+            # Run tests
             cd integration_tests/postgres
             bash run_tests.sh
 
