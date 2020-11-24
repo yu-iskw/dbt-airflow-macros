@@ -34,6 +34,7 @@ commands:
           name: Set up the environment
           command: |
             pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
+
   setup-postgres-image-command:
     parameters:
       pyenv_git_tag:
@@ -56,8 +57,7 @@ commands:
           name: Install pyenv
           command: |
             # Download pyenv
-            git clone -b << parameters.pyenv_git_tag >> --depth 1 \
-                https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
+            curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
             # Register environment variables
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
