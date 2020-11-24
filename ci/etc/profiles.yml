@@ -1,0 +1,14 @@
+
+integration_test:
+  outputs:
+    dev:
+      type: postgres
+      threads: 1
+      host: localhost
+      user: postgres
+      pass: postgres
+      port: 5439
+      dbname: dbt
+      schema: dbt_airflow_macros
+  target: dev
+

@@ -1,0 +1,16 @@
+config:
+    send_anonymous_usage_stats: False
+    use_colors: True
+
+integration_tests:
+  target: postgres
+  outputs:
+    postgres:
+      type: postgres
+      host: "{{ env_var('POSTGRES_TEST_HOST', 'localhost') }}"
+      user: "{{ env_var('POSTGRES_TEST_USER', 'postgres') }}"
+      pass: "{{ env_var('POSTGRES_TEST_PASS', 'postgres') }}"
+      port: "{{ env_var('POSTGRES_TEST_PORT', '5439') | as_number }}"
+      dbname: "{{ env_var('POSTGRES_TEST_DBNAME', 'testdb') }}"
+      schema: dbt_airflow_macros_integration_tests_postgres
+      threads: 1

@@ -8,6 +8,13 @@ executors:
   python-image:
     docker:
       - image: python:3.8
+  postgres-image:
+    docker:
+      - image: postgres:9.6
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: testdb
 
 
 #
@@ -25,12 +32,23 @@ commands:
       - run:
           name: Set up the environment
           command: bash ./ci/setup.sh
+  setup-postgres-image-command:
+    description: "steps to set up postgres-image executor"
+    steps:
+      - run:
+          name: Install libraries
+          command: |
+            apt-get update -y \
+                && apt-get install -y build-essential
+      - run:
+          name: Install pyenv
+          command: bash ./ci/install_pyenv.sh
 
 #
 # jobs
 #
 jobs:
-  test:
+  unit-tests:
     executor: python-image
     steps:
       - checkout
@@ -44,7 +62,18 @@ jobs:
           command: |
             bash ./ci/lint_yaml.sh
       # TODO execute the integration test
-
+  integration-tests-postgres:
+    executor: postgres-image
+    steps:
+      - checkout
+      - setup-postgres-image-command
+      - run:
+          name: test
+          command: |
+            cd integration_tests/postgres
+            dbt deps
+            dbt run
+            dbt test
 
 #
 # Workflows
@@ -52,7 +81,13 @@ jobs:
 workflows:
   test:
     jobs:
-      - test:
+      - unit-tests:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - integration-tests:
           filters:
             branches:
               only: /.*/
