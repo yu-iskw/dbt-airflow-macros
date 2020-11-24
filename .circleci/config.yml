@@ -40,9 +40,6 @@ commands:
       pyenv_git_tag:
         type: string
         default: "v1.2.21"
-      python_version:
-        type: string
-        default: "3.7.8"
     description: "steps to set up postgres-image executor"
     steps:
       - run:
@@ -63,17 +60,6 @@ commands:
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
-      - run:
-          name: Install python
-          command: |
-            pyenv --debug update
-            pyenv --debug install << parameters.python_version >>
-            pyenv --debug global << parameters.python_version >>
-            pyenv --debug rehash
-      - run:
-          name: Set up the environment
-          command: |
-            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
 
 #
 # jobs
@@ -98,6 +84,17 @@ jobs:
     steps:
       - checkout
       - setup-postgres-image-command
+      - run:
+          name: Install python
+          command: |
+            pyenv update
+            pyenv install 3.7.9
+            pyenv global 3.7.9
+            pyenv rehash
+      - run:
+          name: Set up the environment
+          command: |
+            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
       - run:
           name: Run tox
           command: |
