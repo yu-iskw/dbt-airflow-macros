@@ -62,7 +62,7 @@ commands:
             # Register environment variables
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
-            echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $BASH_ENV
+            echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init - --no-rehash)"\nfi' >> $BASH_ENV
       - run:
           name: Install python
           command: |
