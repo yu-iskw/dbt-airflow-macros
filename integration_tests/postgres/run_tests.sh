@@ -10,6 +10,14 @@ profile="integration_tests"
 target="postgres"
 
 # Install dbt packages
+echo "Execute 'dbt debug'"
+dbt debug \
+  --project-dir "$project_dir" \
+  --profiles-dir "$profiles_dir" \
+  --profile "$profile" \
+  --target "$target"
+
+# Install dbt packages
 echo "Execute 'dbt deps'"
 dbt deps \
   --project-dir "$project_dir" \
