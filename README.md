@@ -31,13 +31,14 @@ EXECUTION_DATE="2020-01-01T01:23:45" dbt run
 
 EXECUTION_DATE="2020-01-01" dbt run
 ```
+# Macro
+he package includes the following macros
 
-## Macros
-The package includes the following macros.
-|Macro           |Description                                  |
-|----------------|---------------------------------------------|
-|`execution_date`|`datetime.datetime` object                   |
-|`ds`            |`"%Y-%m-%d"` of execution time               |
-|`ds_nodash`     |`"%Y%m%d"` of execution time                 |
-|`ts`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
-|`ts_nodash`     |`"%Y%m%dT%H%M%S"`of execution_time           |
+|Macro                                |Description                                  |
+|-------------------------------------|---------------------------------------------|
+|`dbt_airflow_macros.execution_date()`|`datetime.datetime` object                   |
+|`dbt_airflow_macros.ds()`            |`"%Y-%m-%d"` of execution time               |
+|`dbt_airflow_macros.ds_nodash()`     |`"%Y%m%d"` of execution time                 |
+|`dbt_airflow_macros.ts()`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
+|`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
+
