@@ -2,12 +2,26 @@
 version: 2.1
 
 #
+# Custom references
+#
+references:
+  # Python docker image tags for tests
+  python_image_tags: &python_image_tags
+    - "3.6"
+    - "3.7"
+    - "3.8"
+
+#
 # CircleCI executors
 #
 executors:
   python-image:
+    parameters:
+      python_image_tag:
+        description: "Python docker image tag"
+        type: string
     docker:
-      - image: python:3.7
+      - image: python:<< parameters.python_image_tag >>
         environment:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
@@ -18,7 +32,6 @@ executors:
           POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: testdb
-
 
 #
 # CircleCI commands
@@ -38,11 +51,17 @@ commands:
             pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
 
 #
-# jobs
+# CircleCI jobs
 #
 jobs:
   tests:
-    executor: python-image
+    parameters:
+      python_image_tag:
+        description: "Python docker image tag"
+        type: string
+    executor:
+      name: python-image
+      python_image_tag: << parameters.python_image_tag >>
     steps:
       - checkout
       - setup-python-image-command
@@ -60,12 +79,15 @@ jobs:
             tox
 
 #
-# Workflows
+# CircleCI workflows
 #
 workflows:
   test:
     jobs:
       - tests:
+          matrix:
+            parameters:
+              python_image_tag: *python_image_tags
           filters:
             branches:
               only: /.*/
