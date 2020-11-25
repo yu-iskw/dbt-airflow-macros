@@ -10,4 +10,4 @@ macros:
       It is inspired by Apache Airflow's `{% raw %}{{ ds }}{% endraw %}`.
 
       ## Usage
-      {% raw %}`{{ ds() }}`{% endraw %}}
+      {% raw %}`{{ dbt_airflow_macros.ds() }}`{% endraw %}}
