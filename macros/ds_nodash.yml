@@ -10,4 +10,4 @@ macros:
       It is inspired by Apache Airflow's `{% raw %}{{ ds_nodash }}{% endraw %}`.
 
       ## Usage
-      {% raw %}`{{ ds_nodash() }}`{% endraw %}}
+      {% raw %}`{{ dbt_airflow_macros.ds_nodash() }}`{% endraw %}}
