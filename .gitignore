@@ -1,3 +1,6 @@
+*.egg-info/
+.tox/
+
 target/
 dbt_modules/
 logs/

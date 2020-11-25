@@ -1,3 +1,0 @@
--e requirements-dev.txt
-
-dbt-core==0.18.1

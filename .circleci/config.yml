@@ -7,7 +7,17 @@ version: 2.1
 executors:
   python-image:
     docker:
-      - image: python:3.8
+      - image: python:3.7
+        environment:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_DBE: testdb
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: testdb
 
 
 #
@@ -24,13 +34,14 @@ commands:
                 && apt-get install -y build-essential yamllint shellcheck jq
       - run:
           name: Set up the environment
-          command: bash ./ci/setup.sh
+          command: |
+            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
 
 #
 # jobs
 #
 jobs:
-  test:
+  tests:
     executor: python-image
     steps:
       - checkout
@@ -43,8 +54,10 @@ jobs:
           name: Validate YAML files
           command: |
             bash ./ci/lint_yaml.sh
-      # TODO execute the integration test
-
+      - run:
+          name: Run the intagration tests on postgres
+          command: |
+            tox
 
 #
 # Workflows
@@ -52,7 +65,7 @@ jobs:
 workflows:
   test:
     jobs:
-      - test:
+      - tests:
           filters:
             branches:
               only: /.*/
