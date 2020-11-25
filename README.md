@@ -9,7 +9,7 @@ This is a dbt package to use macros inspired by Apache Airflow.
 
   - [Installation](#installation)
   - [Environment variable](#environment-variable)
-- [Macro](#macro)
+- [Macros](#macros)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
