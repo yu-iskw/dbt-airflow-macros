@@ -31,7 +31,7 @@ EXECUTION_DATE="2020-01-01T01:23:45" dbt run
 
 EXECUTION_DATE="2020-01-01" dbt run
 ```
-# Macro
+# Macros
 he package includes the following macros
 
 |Macro                                |Description                                  |
