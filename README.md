@@ -13,6 +13,16 @@ This is a dbt package to use macros inspired by Apache Airflow.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## Environments
+
+### Recommended environments
+- Python: 3.6, 3.7 and 3.8
+- dbt: >=0.17.0
+
+### Tested environments
+- Python: 3.6, 3.7 and 3.8
+- dbt: 0.17.2, 0.18.1 and 0.19.0b1
+
 ## Installation
 Include in `packages.yaml`
 ```yaml
@@ -31,7 +41,8 @@ EXECUTION_DATE="2020-01-01T01:23:45" dbt run
 
 EXECUTION_DATE="2020-01-01" dbt run
 ```
-# Macros
+
+## Macros
 he package includes the following macros
 
 |Macro                                |Description                                  |
@@ -42,3 +53,5 @@ he package includes the following macros
 |`dbt_airflow_macros.ts()`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
 |`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
 
+## Links
+* [Use Airflow\-like macros in dbt | Medium](https://yu-ishikawa.medium.com/use-airflow-like-macros-in-dbt-4bc9fba8e21a)
