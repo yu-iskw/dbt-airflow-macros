@@ -4,7 +4,7 @@ profile: integration_tests
 
 version: 2
 
-require-dbt-version: ">=0.18.0"
+require-dbt-version: ">=0.17.0"
 
 source-paths: ["models"]
 analysis-paths: ["analysis"]
