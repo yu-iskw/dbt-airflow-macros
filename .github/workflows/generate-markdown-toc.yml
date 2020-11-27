@@ -5,6 +5,8 @@ jobs:
     name: TOC Generator
     runs-on: ubuntu-latest
     steps:
+      # The GitHub Actions enables us to automatically generate TOC in markdown files.
+      # SEE: https://github.com/technote-space/toc-generator
       - uses: technote-space/toc-generator@v2
         with:
           TARGET_PATHS: "README.md"
