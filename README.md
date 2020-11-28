@@ -6,12 +6,11 @@ This is a dbt package to use macros inspired by Apache Airflow.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Environments](#environments)
-  - [Recommended environments](#recommended-environments)
-  - [Tested environments](#tested-environments)
+- [Recommended environments](#recommended-environments)
 - [Installation](#installation)
 - [Environment variable](#environment-variable)
 - [Macros](#macros)
+- [Tested environments](#tested-environments)
 - [Links](#links)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
