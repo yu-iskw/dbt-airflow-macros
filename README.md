@@ -1,31 +1,23 @@
 # dbt-airflow-macros
 [![Build Status](https://circleci.com/gh/yu-iskw/dbt-airflow-macros.svg?style=svg)](https://app.circleci.com/pipelines/github/yu-iskw/dbt-airflow-macros)
 
-
 This is a dbt package to use macros inspired by Apache Airflow.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Environments](#environments)
-  - [Recommended environments](#recommended-environments)
-  - [Tested environments](#tested-environments)
+- [Recommended environments](#recommended-environments)
 - [Installation](#installation)
 - [Environment variable](#environment-variable)
 - [Macros](#macros)
+- [Tested environments](#tested-environments)
 - [Links](#links)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Environments
-
-### Recommended environments
+## Recommended environments
 - Python: 3.6, 3.7 and 3.8
 - dbt: >=0.17.0
-
-### Tested environments
-- Python: 3.6, 3.7 and 3.8
-- dbt: 0.17.2, 0.18.1 and 0.19.0b1
 
 ## Installation
 Include in `packages.yaml`
@@ -56,6 +48,13 @@ he package includes the following macros
 |`dbt_airflow_macros.ds_nodash()`     |`"%Y%m%d"` of execution time                 |
 |`dbt_airflow_macros.ts()`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
 |`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
+
+## Tested environments
+The continuous integration tested the dbt package with the environments below.
+
+- dbt-airflow-macros==0.2.0
+  - Python: 3.6, 3.7 and 3.8
+  - dbt: 0.17.2, 0.18.1 and 0.19.0b1
 
 ## Links
 * [Use Airflow\-like macros in dbt | Medium](https://yu-ishikawa.medium.com/use-airflow-like-macros-in-dbt-4bc9fba8e21a)
