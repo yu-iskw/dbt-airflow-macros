@@ -1,3 +1,6 @@
+setup:
+	bash ./dev/setup.sh
+
 lint: lint-yaml lint-bash
 
 lint-yaml:

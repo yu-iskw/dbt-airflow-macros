@@ -48,7 +48,7 @@ commands:
       - run:
           name: Set up the environment
           command: |
-            pip install --no-cache-dir --force-reinstall -r "./ci/requirements.txt"
+            bash ./dev/setup.sh
 
 #
 # CircleCI jobs
