@@ -13,4 +13,5 @@ integration_tests:
       pass: "{{ env_var('POSTGRES_PASSWORD', 'postgres') }}"
       dbname: "{{ env_var('POSTGRES_DBE', 'testdb') }}"
       schema: dbt_airflow_macros_integration_tests_postgres
-      threads: 1
+      threads: |
+        {{ env_var('DBT_THREADS', 1) | int }}

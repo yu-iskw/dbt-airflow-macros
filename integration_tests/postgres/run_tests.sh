@@ -40,3 +40,11 @@ dbt test \
   --profiles-dir "$profiles_dir" \
   --profile "$profile" \
   --target "$target"
+
+# Run dbt docs generate
+echo "Execute 'dbt docs generate'"
+dbt docs generate \
+  --project-dir "$project_dir" \
+  --profiles-dir "$profiles_dir" \
+  --profile "$profile" \
+  --target "$target"
