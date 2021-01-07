@@ -49,6 +49,10 @@ he package includes the following macros
 |`dbt_airflow_macros.ts()`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
 |`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
 
+## Examples
+[`test_macros.sql`](./integration_tests/postgres/models/test_macros.sql) is a file to test the macros.
+Those would be helpful to understand how to use the macros.
+
 ## Tested environments
 The continuous integration tested the dbt package with the environments below.
 
