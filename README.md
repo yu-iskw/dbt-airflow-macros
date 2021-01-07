@@ -2,6 +2,8 @@
 [![Build Status](https://circleci.com/gh/yu-iskw/dbt-airflow-macros.svg?style=svg)](https://app.circleci.com/pipelines/github/yu-iskw/dbt-airflow-macros)
 
 This is a dbt package to use macros inspired by Apache Airflow.
+The macros are not warehouse-specific.
+Those work with any warehouse.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -50,7 +52,7 @@ he package includes the following macros
 |`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
 
 ## Examples
-[`test_macros.sql`](./integration_tests/postgres/models/test_macros.sql) is a file to test the macros.
+[`test_macros.sql`](./integration_tests/postgres/models/test_macros.sql) is a file to test the macros on PostgreSQL.
 Those would be helpful to understand how to use the macros.
 
 ## Tested environments
