@@ -12,6 +12,7 @@ Those work with any warehouse.
 - [Installation](#installation)
 - [Environment variable](#environment-variable)
 - [Macros](#macros)
+- [Examples](#examples)
 - [Tested environments](#tested-environments)
 - [Links](#links)
 
