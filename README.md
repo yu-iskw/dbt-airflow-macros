@@ -64,4 +64,5 @@ The continuous integration tested the dbt package with the environments below.
   - dbt: 0.17.2, 0.18.1 and 0.19.0b1
 
 ## Links
+* [dbt_airflow_macros on dbt hub](https://hub.getdbt.com/yu-iskw/dbt_airflow_macros/latest/)
 * [Use Airflow\-like macros in dbt | Medium](https://yu-ishikawa.medium.com/use-airflow-like-macros-in-dbt-4bc9fba8e21a)
