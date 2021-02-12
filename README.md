@@ -27,7 +27,7 @@ Include in `packages.yaml`
 ```yaml
 packages:
   - git: "https://github.com/yu-iskw/dbt-airflow-macros.git"
-    revision: 0.2.0
+    revision: 0.2.2
 ```
 
 ## Environment variable
