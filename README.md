@@ -19,7 +19,7 @@ Those work with any warehouse.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Recommended environments
-- Python: 3.6, 3.7 and 3.8
+- Python: 3.6, 3.7, 3.8, 3.9 and 3.10
 - dbt: >=0.17.0
 
 ## Installation
@@ -59,9 +59,9 @@ Those would be helpful to understand how to use the macros.
 ## Tested environments
 The continuous integration tested the dbt package with the environments below.
 
-- dbt-airflow-macros==0.2.x
-  - Python: 3.6, 3.7 and 3.8
-  - dbt: 0.17.2, 0.18.1, 0.19.0 and 0.20.0
+- dbt-airflow-macros==0.3.x
+  - Python: 3.6, 3.7, 3.8, 3.9, 3.10
+  - dbt: 0.17.2, 0.18.1, 0.19.0, 0.20.0, 0.21.0, 1.0.3
 
 ## Links
 * [dbt_airflow_macros on dbt hub](https://hub.getdbt.com/yu-iskw/dbt_airflow_macros/latest/)
