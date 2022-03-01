@@ -78,7 +78,12 @@ jobs:
       - run:
           name: Run the intagration tests on postgres
           command: |
-            tox
+            # dbt-1.0 doesn't support python 3.6.
+            if "<< parameters.python_image_tag >>" == "3.6" ; then
+              tox -e dbt-0.17,dbt-0.18,dbt-0.19,dbt-0.20,dbt-0.21
+            else
+              tox
+            fi
 
 #
 # CircleCI workflows
