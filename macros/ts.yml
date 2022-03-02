@@ -11,3 +11,4 @@ macros:
 
       ## Usage
       {% raw %}`{{ dbt_airflow_macros.ts() }}`{% endraw %}}
+      {% raw %}`{{ dbt_airflow_macros.ts(timezone="Asia/Tokyo") }}`{% endraw %}}

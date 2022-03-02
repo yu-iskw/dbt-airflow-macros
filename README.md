@@ -42,15 +42,17 @@ EXECUTION_DATE="2020-01-01" dbt run
 ```
 
 ## Macros
-he package includes the following macros
+The package includes the following macros.
+`timezone` is an optional argument.
+When it is set to `none`, the timezone is UTC by default.
 
-|Macro                                |Description                                  |
-|-------------------------------------|---------------------------------------------|
-|`dbt_airflow_macros.execution_date()`|`datetime.datetime` object                   |
-|`dbt_airflow_macros.ds()`            |`"%Y-%m-%d"` of execution time               |
-|`dbt_airflow_macros.ds_nodash()`     |`"%Y%m%d"` of execution time                 |
-|`dbt_airflow_macros.ts()`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
-|`dbt_airflow_macros.ts_nodash()`     |`"%Y%m%dT%H%M%S"`of execution_time           |
+|Macro                                             |Description                                  |
+|--------------------------------------------------|---------------------------------------------|
+|`dbt_airflow_macros.execution_date(timezone=none)`|`datetime.datetime` object                   |
+|`dbt_airflow_macros.ds(timezone=none)`            |`"%Y-%m-%d"` of execution time               |
+|`dbt_airflow_macros.ds_nodash(timezone=none)`     |`"%Y%m%d"` of execution time                 |
+|`dbt_airflow_macros.ts(timezone=none)`            |`"%Y-%m-%dT%H:%M:%S+00:00"` of execution time|
+|`dbt_airflow_macros.ts_nodash(timezone=none)`     |`"%Y%m%dT%H%M%S"`of execution_time           |
 
 ## Examples
 [`test_macros.sql`](./integration_tests/postgres/models/test_macros.sql) is a file to test the macros on PostgreSQL.

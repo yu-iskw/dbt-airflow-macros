@@ -11,3 +11,4 @@ macros:
 
       ## Usage
       {% raw %}`{{ dbt_airflow_macros.ds_nodash() }}`{% endraw %}}
+      {% raw %}`{{ dbt_airflow_macros.ds_nodash(timezone="Asia/Tokyo") }}`{% endraw %}}
