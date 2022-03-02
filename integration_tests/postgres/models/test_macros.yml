@@ -7,12 +7,24 @@ models:
       - name: ds
         tests:
           - not_null
+      - name: ds_with_timezone
+        tests:
+          - not_null
       - name: ds_nodash
+        tests:
+          - not_null
+      - name: ds_nodash_with_timezone
         tests:
           - not_null
       - name: ts
         tests:
           - not_null
+      - name: ts_with_timezone
+        tests:
+          - not_null
       - name: ts_nodash
+        tests:
+          - not_null
+      - name: ts_nodash_with_timezone
         tests:
           - not_null

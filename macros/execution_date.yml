@@ -10,3 +10,7 @@ macros:
       It is inspired by Apache Airflow's `{% raw %}{{ execution_date }}{% endraw %}`.
 
       The default value is the system local time, no matter what time zone it uses.
+
+      ## Usage
+      {% raw %}`{{ dbt_airflow_macros.execution_date() }}`{% endraw %}}
+      {% raw %}`{{ dbt_airflow_macros.execution_date(timezone="Asia/Tokyo") }}`{% endraw %}}
