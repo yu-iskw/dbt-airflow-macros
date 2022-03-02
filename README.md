@@ -64,6 +64,9 @@ The continuous integration tested the dbt package with the environments below.
 - dbt-airflow-macros==0.2.x
   - Python: 3.6, 3.7 and 3.8
   - dbt: 0.17.2, 0.18.1, 0.19.0, 0.20.0 and 0.21.0
+- dbt-airflow-macros==0.3.x
+  - Python: 3.7, 3.8, 3.9 and 3.10
+  - dbt: 0.20.0, 0.21.0 and 1.0.3
 
 ## Links
 * [dbt_airflow_macros on dbt hub](https://hub.getdbt.com/yu-iskw/dbt_airflow_macros/latest/)
