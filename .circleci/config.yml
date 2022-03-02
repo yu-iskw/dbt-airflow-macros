@@ -7,9 +7,10 @@ version: 2.1
 references:
   # Python docker image tags for tests
   python_image_tags: &python_image_tags
-    - "3.6"
     - "3.7"
     - "3.8"
+    - "3.9"
+    - "3.10"
 
 #
 # CircleCI executors
