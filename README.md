@@ -33,7 +33,7 @@ packages:
 ## Environment variable
 The shell environment variable `EXECUTION_DATE` enables us to pass the date and time for the dbt macros.
 The ISO 8601 format is available, because the package uses `datetime.datetime.fromisoformat` internally.
-If we don't set `EXECUTION_DATE`, then it is set to the system local time no matter what time zone it uses.
+If we don't set `EXECUTION_DATE`, then it is set to the current UTC date and time.
 
 ```bash
 EXECUTION_DATE="2020-01-01T01:23:45" dbt run
