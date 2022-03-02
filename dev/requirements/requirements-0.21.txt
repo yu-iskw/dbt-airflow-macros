@@ -1,2 +1,2 @@
-dbt-core==0.21.0
 dbt-postgres==0.21.0
+MarkupSafe==2.0.1
