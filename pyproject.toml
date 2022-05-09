@@ -9,6 +9,7 @@ build-backend = "setuptools.build_meta"
 name = "dbt-airflow-macros"
 description = "dbt macros inspired by Apache Airflow"
 readme = "README.md"
+version = "0.3.0-dev"
 
 [tool.setuptools.packages.find]
 include = []
