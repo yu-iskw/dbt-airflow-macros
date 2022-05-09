@@ -5,6 +5,10 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "dbt-airflow-macros"
+description = "dbt macros inspired by Apache Airflow"
+readme = "README.md"
 
 [tool.setuptools.packages.find]
 include = []
