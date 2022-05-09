@@ -1,6 +1,16 @@
 [build-system]
 requires = [
-    "setuptools >= 35.0.2",
-    "setuptools_scm >= 2.0.0, <3"
+    "setuptools>=45",
+    "setuptools_scm[toml]>=6.2"
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "dbt-airflow-macros"
+description = "dbt macros inspired by Apache Airflow"
+readme = "README.md"
+version = "0.3.0-dev"
+
+[tool.setuptools.packages.find]
+include = []
+exclude = ['dev', 'macros', 'integration_tests']
