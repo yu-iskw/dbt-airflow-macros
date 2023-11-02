@@ -1,5 +1,5 @@
 {%- macro execution_date(timezone=none) -%}
-    {%- set execution_date_str = env_var('EXECUTION_DATE', "none") -%}
+    {%- set execution_date_str = env_var('EXECUTION_DATE', var('execution_date', "none")) -%}
     {%- set _execution_date = none -%}
 
     {%- if execution_date_str == "none" -%}
