@@ -4,13 +4,13 @@
 # `.github/labeler.yml` is the file to define rules to label.
 name: "Pull Request Labeler"
 on:
-- pull_request_target
+  - pull_request_target
 
 jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    # SEE: https://github.com/actions/labeler
-    - uses: actions/labeler@main
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      # SEE: https://github.com/actions/labeler
+      - uses: actions/labeler@v5.0.0
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
