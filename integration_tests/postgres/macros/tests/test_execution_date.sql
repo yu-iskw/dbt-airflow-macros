@@ -1,13 +1,13 @@
 {% macro test_execution_date() %}
 
   {# Test case 1: EXECUTION_DATE not set, no timezone #}
-  {% set expected = modules.datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f') | reverse | cut(9) | reverse %}
+  {% set expected = modules.datetime.datetime.utcnow().isoformat(timespec='seconds') %}
   {% set actual = dbt_unittest.get_result("{{ dbt_airflow_macros.execution_date() }}", {"EXECUTION_DATE": "none"}) %}
   {{ dbt_unittest.assert_true(actual.startswith(expected), 'test_execution_date_utcnow_no_timezone - Expected: starts with ' ~ expected ~ ', Actual: ' ~ actual) }}
 
   {# Test case 2: EXECUTION_DATE not set, with timezone #}
   {% set expected_dt = modules.datetime.datetime.utcnow() %}
-  {% set expected = modules.pytz.timezone("Asia/Tokyo").localize(expected_dt).strftime('%Y-%m-%dT%H:%M:%S.%f') | reverse | cut(9) | reverse %}
+  {% set expected = modules.pytz.timezone("Asia/Tokyo").localize(expected_dt).isoformat(timespec='seconds') %}
   {% set actual = dbt_unittest.get_result("{{ dbt_airflow_macros.execution_date(timezone=\"Asia/Tokyo\") }}", {"EXECUTION_DATE": "none"}) %}
   {{ dbt_unittest.assert_true(actual.startswith(expected), 'test_execution_date_utcnow_with_timezone - Expected: starts with ' ~ expected ~ ', Actual: ' ~ actual) }}
 
