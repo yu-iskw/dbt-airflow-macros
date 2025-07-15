@@ -10,14 +10,6 @@ profile="integration_tests"
 target="postgres"
 
 # Install dbt packages
-echo "Execute 'dbt debug'"
-dbt debug \
-  --project-dir "$project_dir" \
-  --profiles-dir "$profiles_dir" \
-  --profile "$profile" \
-  --target "$target"
-
-# Install dbt packages
 echo "Execute 'dbt deps'"
 dbt deps \
   --project-dir "$project_dir" \
@@ -25,25 +17,9 @@ dbt deps \
   --profile "$profile" \
   --target "$target"
 
-# Run dbt models
-echo "Execute 'dbt run'"
-dbt run \
-  --project-dir "$project_dir" \
-  --profiles-dir "$profiles_dir" \
-  --profile "$profile" \
-  --target "$target"
-
-# Run dbt tests
-echo "Execute 'dbt test'"
-dbt test \
-  --project-dir "$project_dir" \
-  --profiles-dir "$profiles_dir" \
-  --profile "$profile" \
-  --target "$target"
-
-# Run dbt docs generate
-echo "Execute 'dbt docs generate'"
-dbt docs generate \
+# Run dbt unit tests
+echo "Execute 'dbt run-operation run_unit_tests'"
+EXECUTION_DATE="2023-01-01T00:00:00" dbt run-operation run_unit_tests \
   --project-dir "$project_dir" \
   --profiles-dir "$profiles_dir" \
   --profile "$profile" \
