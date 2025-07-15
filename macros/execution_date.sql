@@ -4,14 +4,14 @@
 
     {%- if execution_date_str == "none" -%}
         {%- set _execution_date = modules.datetime.datetime.utcnow() -%}
-        {{ return(modules.datetime.datetime.utcnow()) }}
+        {{ return(_execution_date.isoformat(timespec='seconds')) }}
     {%- else -%}
         {%- set _execution_date = modules.datetime.datetime.fromisoformat(execution_date_str) -%}
     {%- endif -%}
 
     {%- if timezone == none -%}
-        {{ return(_execution_date) }}
+        {{ return(_execution_date.isoformat(timespec='seconds')) }}
     {%- else -%}
-        {{ return(modules.pytz.timezone(timezone).localize(_execution_date)) }}
+        {{ return(modules.pytz.timezone(timezone).localize(_execution_date).isoformat(timespec='seconds')) }}
     {%- endif -%}
 {%- endmacro -%}
