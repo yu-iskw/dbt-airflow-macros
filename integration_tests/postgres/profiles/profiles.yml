@@ -11,7 +11,7 @@ integration_tests:
       port: "{{ env_var('POSTGRES_PORT', '5432') | as_number }}"
       user: "{{ env_var('POSTGRES_USER', 'postgres') }}"
       password: "{{ env_var('POSTGRES_PASSWORD', 'postgres') }}"
-      dbname: "{{ env_var('POSTGRES_DB', 'testdb') }}"
+      dbname: "{{ env_var('POSTRES_DB', 'testdb') }}"
       schema: dbt_airflow_macros_integration_tests_postgres
       threads: |
         {{ env_var('DBT_THREADS', 1) | int }}
