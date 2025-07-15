@@ -1,0 +1,106 @@
+name: Test macros
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-dbt-core:
+    name: Test (dbt Core with Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11, 3.12, 3.13]
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_DB: testdb
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y build-essential yamllint shellcheck jq
+
+      - name: Set up the environment
+        run: |
+          bash ./dev/setup.sh
+
+      - name: Validate bash scripts
+        run: |
+          bash ./ci/lint_bash.sh
+
+      - name: Validate YAML files
+        run: |
+          bash ./ci/lint_yaml.sh
+
+      - name: Install tox
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+
+      - name: Run the integration tests on postgres
+        run: |
+          tox
+
+  test-dbt-fusion:
+    name: Test (dbt Fusion)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11]
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_DB: testdb
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up dbt Fusion
+        run: |
+          curl -fsSL https://public.cdn.getdbt.com/fs/install/install.sh | sh -s -- --update
+
+      - name: Run the integration tests on postgres
+        working-directory: integration_tests/postgres
+        run: |
+          bash -x run_tests.sh
