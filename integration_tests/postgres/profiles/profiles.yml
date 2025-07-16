@@ -7,7 +7,7 @@ integration_tests:
   outputs:
     postgres:
       type: postgres
-      host: "{{ env_var('POSTGRES_HOST', 'localhost') }}"
+      host: "{{ env_var('POSTGRES_HOST', '127.0.0.1') }}"
       port: "{{ env_var('POSTGRES_PORT', '5432') | as_number }}"
       user: "{{ env_var('POSTGRES_USER', 'postgres') }}"
       password: "{{ env_var('POSTGRES_PASSWORD', 'postgres') }}"

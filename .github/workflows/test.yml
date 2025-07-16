@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test-dbt-core:
     name: Test (dbt Core with Python ${{ matrix.python-version }})
@@ -30,10 +33,10 @@ jobs:
           --health-timeout=5s
           --health-retries=5
     env:
-      POSTGRES_HOST: localhost
+      POSTGRES_HOST: 127.0.0.1
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: testdb
     steps:
       - name: Checkout code
@@ -93,11 +96,11 @@ jobs:
           --health-timeout=5s
           --health-retries=5
     env:
-      POSTGRES_HOST: localhost
+      POSTGRES_HOST: 127.0.0.1
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
       POSTGRES_DB: testdb
-      POSTGRES_PASSWORD: "password"
+      POSTGRES_PASSWORD: password
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
