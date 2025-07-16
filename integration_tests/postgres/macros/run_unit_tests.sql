@@ -4,4 +4,6 @@
   {{ integration_tests.test_ds_nodash() }}
   {{ integration_tests.test_ts() }}
   {{ integration_tests.test_ts_nodash() }}
+
+  {{ print("All tests passed") }}
 {% endmacro %}
