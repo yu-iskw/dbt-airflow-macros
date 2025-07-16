@@ -33,10 +33,16 @@ jobs:
       POSTGRES_HOST: localhost
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: testdb
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Wait for DB
+        timeout-minutes: 1
+        run: |
+          until pg_isready -h localhost -U postgres -d testdb; do sleep 1; done
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -95,6 +101,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Wait for DB
+        timeout-minutes: 1
+        run: |
+          until pg_isready -h localhost -U postgres -d testdb; do sleep 1; done
 
       - name: Set up dbt Fusion
         run: |
