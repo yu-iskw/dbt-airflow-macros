@@ -78,43 +78,43 @@ jobs:
         run: |
           tox
 
-  # test-dbt-fusion:
-  #   name: Test (dbt Fusion)
-  #   runs-on: ubuntu-latest
-  #   services:
-  #     postgres:
-  #       image: postgres:17.5
-  #       env:
-  #         POSTGRES_USER: postgres
-  #         POSTGRES_PASSWORD: postgres
-  #         POSTGRES_DB: testdb
-  #       ports:
-  #         - 5432:5432
-  #       options: >-
-  #         --health-cmd="pg_isready -U postgres"
-  #         --health-interval=10s
-  #         --health-timeout=5s
-  #         --health-retries=5
-  #   env:
-  #     POSTGRES_HOST: 127.0.0.1
-  #     POSTGRES_PORT: 5432
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_DB: testdb
-  #     POSTGRES_PASSWORD: postgres
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  test-dbt-fusion:
+    name: Test (dbt Fusion)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: "password"
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_DB: testdb
+      POSTGRES_PASSWORD: "password"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Wait for DB
-  #       timeout-minutes: 1
-  #       run: |
-  #         until pg_isready -h localhost -U postgres -d testdb; do sleep 1; done
+      - name: Wait for DB
+        timeout-minutes: 1
+        run: |
+          until pg_isready -h localhost -U postgres -d testdb; do sleep 1; done
 
-  #     - name: Set up dbt Fusion
-  #       run: |
-  #         curl -fsSL https://public.cdn.getdbt.com/fs/install/install.sh | sh -s -- --update
+      - name: Set up dbt Fusion
+        run: |
+          curl -fsSL https://public.cdn.getdbt.com/fs/install/install.sh | sh -s -- --update
 
-  #     - name: Run the integration tests on postgres
-  #       working-directory: integration_tests/postgres
-  #       run: |
-  #         bash -x run_tests.sh
+      - name: Run the integration tests on postgres
+        working-directory: integration_tests/postgres
+        run: |
+          bash -x run_tests.sh
