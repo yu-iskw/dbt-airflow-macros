@@ -23,7 +23,7 @@ jobs:
         image: postgres:17.5
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: "password"
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
         ports:
           - 5432:5432
@@ -36,7 +36,7 @@ jobs:
       POSTGRES_HOST: 127.0.0.1
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: testdb
     steps:
       - name: Checkout code
@@ -86,7 +86,7 @@ jobs:
         image: postgres:17.5
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: "password"
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
         ports:
           - 5432:5432
@@ -100,7 +100,7 @@ jobs:
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
       POSTGRES_DB: testdb
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgres
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
