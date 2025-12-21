@@ -9,6 +9,7 @@ on:
 permissions:
   contents: read
 
+
 jobs:
   test-dbt-core:
     name: Test (dbt Core with Python ${{ matrix.python-version }})
